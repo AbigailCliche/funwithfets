@@ -1,0 +1,6 @@
+
+class PFET
+{
+public:
+private:
+}
