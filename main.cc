@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cmath>
 #include "inverter.h"
+#include <time.h>
 
 using namespace std;
 
@@ -18,7 +19,7 @@ int main()
    nf1.set_drain_voltage(2.5);
    cout << "Drainage current at saturation: " << nf1.get_drainage_current() << "A\n" << endl; 
 
-   cout << "Inverter Analysis HW4" << endl;
+   cout << "Inverter Delay Analysis HW4" << endl;
    inverter inv = inverter();
    inv.get_nfet()->set_mobility(1000);
    inv.get_pfet()->set_mobility(500);
@@ -26,8 +27,21 @@ int main()
    inv.get_pfet()->set_width_nm(220);
    inv.get_nfet()->set_new_threshold_voltage(0.5);
    inv.get_pfet()->set_new_threshold_voltage(0.5);
+   //wait(3);
    cout << "tpHL: " << inv.get_tpHL() << "s" << endl;
    cout << "tpLH: " << inv.get_tpLH() << "s\n" << endl;
    cout << "n threshold voltage: " << inv.get_nfet()->get_threshold_voltage() << "V" << endl;
+
+   // cout << "Cascaded Inverter Analysis HW6" << endl;
+   // inverter inv = inverter();
+   // inv.get_nfet()->set_mobility(1000);
+   // inv.get_pfet()->set_mobility(500);
+   // inv.get_nfet()->set_width_nm(110);
+   // inv.get_pfet()->set_width_nm(220);
+   // inv.get_nfet()->set_new_threshold_voltage(0.5);
+   // inv.get_pfet()->set_new_threshold_voltage(0.5);
+   // cout << "tpHL: " << inv.get_tpHL() << "s" << endl;
+   // cout << "tpLH: " << inv.get_tpLH() << "s\n" << endl;
+   // cout << "n threshold voltage: " << inv.get_nfet()->get_threshold_voltage() << "V" << endl;
 }
 

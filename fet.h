@@ -12,6 +12,9 @@
 // consider differences between PMOS and NMOS in slide deck 7
 // Finish HW 3 problem 3
 
+// Pfet Vth < 0
+// Nfet Vth > 0
+
 /*
 * Update ox cap, update psi_beta -> update Vth -> update op region -> update Ids
 */
