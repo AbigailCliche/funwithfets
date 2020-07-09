@@ -1,6 +1,0 @@
-
-class PFET
-{
-public:
-private:
-}
