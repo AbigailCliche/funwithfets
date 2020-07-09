@@ -25,23 +25,9 @@ int main()
    inv.get_pfet()->set_mobility(500);
    inv.get_nfet()->set_width_nm(110);
    inv.get_pfet()->set_width_nm(220);
-   inv.get_nfet()->set_new_threshold_voltage(0.5);
-   inv.get_pfet()->set_new_threshold_voltage(0.5);
-   //wait(3);
    cout << "tpHL: " << inv.get_tpHL() << "s" << endl;
    cout << "tpLH: " << inv.get_tpLH() << "s\n" << endl;
-   cout << "n threshold voltage: " << inv.get_nfet()->get_threshold_voltage() << "V" << endl;
+   cout << "threshold voltage: " << inv.get_nfet()->get_threshold_voltage() << "V" << endl;
 
-   // cout << "Cascaded Inverter Analysis HW6" << endl;
-   // inverter inv = inverter();
-   // inv.get_nfet()->set_mobility(1000);
-   // inv.get_pfet()->set_mobility(500);
-   // inv.get_nfet()->set_width_nm(110);
-   // inv.get_pfet()->set_width_nm(220);
-   // inv.get_nfet()->set_new_threshold_voltage(0.5);
-   // inv.get_pfet()->set_new_threshold_voltage(0.5);
-   // cout << "tpHL: " << inv.get_tpHL() << "s" << endl;
-   // cout << "tpLH: " << inv.get_tpLH() << "s\n" << endl;
-   // cout << "n threshold voltage: " << inv.get_nfet()->get_threshold_voltage() << "V" << endl;
 }
 

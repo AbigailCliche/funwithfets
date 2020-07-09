@@ -16,25 +16,12 @@ class inverter
       float get_tpHL();
       float get_Vdd();
     private:
-      void update_LH_delay();
-      void update_HL_delay();
-      void update_Rn();
-      void update_Rp();
-      void update_Cl();
-      // Given
       fet * nfet;
       fet * pfet;
       float Vdd;
-      // Derived
-      float tpLH;
-      float tpHL;
-      float propogation_delay;
-      float leakage_energy;
-      float l_h_energy_dissipation;
-      float Rn;
-      float Rp;
-      float Cl;
-
+      float get_Rn();
+      float get_Rp();
+      float get_Cl();
 };
 
 #endif

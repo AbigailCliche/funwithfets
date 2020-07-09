@@ -103,28 +103,6 @@ void fet::set_mobility(float MuN)
    update_drainage_current();
 }
 
-// manipulates channel doping to get new Vth
-void fet::set_new_threshold_voltage(float desired)
-{
-   if (this->Vth > desired)
-   {
-      while (this->Vth > desired)
-      {
-         this->Na = this->Na-(0.00001*pow(10,17));
-         update_psi_beta();
-         //cout << "Vth: " << this->Vth << endl;
-      }
-   }
-   if (this->Vth < desired)
-   {
-       while (this->Vth < desired)
-      {
-         this->Na = this->Na+(0.00001*pow(10,17));
-         update_psi_beta();
-         //cout << "Vth: " << this->Vth << endl;
-      }
-   }
-}
 
 float fet::get_drainage_current()
 {

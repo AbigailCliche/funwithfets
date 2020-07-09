@@ -40,7 +40,7 @@ class fet
       void set_gate_voltage(float v);
       void set_drain_voltage(float v);
       void set_mobility(float MuN);
-      void set_new_threshold_voltage(float Vth); // manipulates channel doping to achieve desired threshold voltage
+      //void set_new_threshold_voltage(float Vth); // manipulates channel doping to achieve desired threshold voltage
 
    private:
       void update_drainage_current();
