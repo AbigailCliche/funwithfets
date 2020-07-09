@@ -42,15 +42,15 @@ float inverter::get_Vdd()
 
 float inverter::get_Cl()
 {
-   return nfet->get_cox()*nfet->get_width()*nfet->get_length() + pfet->get_cox()*pfet->get_width()*pfet->get_length();
+   return nfet->get_Cox()*nfet->get_width()*nfet->get_length() + pfet->get_Cox()*pfet->get_width()*pfet->get_length();
 }
 
 float inverter::get_Rn()
 {
-   return 1/(float(nfet->get_e_mobility()*nfet->get_cox()*(nfet->get_width()/nfet->get_length()))*float(Vdd - nfet->get_threshold_voltage()));
+   return 1/(float(nfet->get_e_mobility()*nfet->get_Cox()*(nfet->get_width()/nfet->get_length()))*float(Vdd - nfet->get_Vth()));
 }
 
 float inverter::get_Rp()
 {
-   return 1/(float(pfet->get_e_mobility()*pfet->get_cox()*(pfet->get_width()/pfet->get_length()))*float(Vdd - abs(pfet->get_threshold_voltage())));
+   return 1/(float(pfet->get_e_mobility()*pfet->get_Cox()*(pfet->get_width()/pfet->get_length()))*float(Vdd - abs(pfet->get_Vth())));
 }

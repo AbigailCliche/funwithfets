@@ -26,12 +26,15 @@ class fet
       fet(int type);
       fet(int type, float width, float length, float Na, float tox, float MuN);
 
-      float get_threshold_voltage();
       float get_drainage_current();
       float get_width();
       float get_length();
       float get_e_mobility();
       float get_cox();
+      float get_Vth(); // Threshold voltag: the minimum gate voltage required to induce current
+      float get_Cox(); // oxide capacitance
+      float get_psi_beta();
+      void print_operating_region();
 
       void set_channel_doping(float Na);
       void set_tox_nm(float tox);
@@ -40,17 +43,10 @@ class fet
       void set_gate_voltage(float v);
       void set_drain_voltage(float v);
       void set_mobility(float MuN);
-      //void set_new_threshold_voltage(float Vth); // manipulates channel doping to achieve desired threshold voltage
 
    private:
-      void update_drainage_current();
-      void update_psi_beta();
-      void update_threshold_voltage();
-      //void update_depletion_width();
-      void update_operating_region();
-      void update_oxide_capacitance();
+      int get_operating_region();
 
-      // given
       float Na;  // channel doping
       float tox; // in meters
       float width;
@@ -60,13 +56,6 @@ class fet
       float Vgs;
       float Vds;
 
-      // derived
-      float Cox;
-      float psi_beta;
-      float Vth; // minimum gate voltage required to induce current
-      float drainage_current;
-      // float depletion_width;
-      int operating_region; // depends on Vth, Vds, Vgs
 };
 
 #endif
