@@ -6,8 +6,8 @@ using namespace std;
 
 inverter::inverter():Vdd(2.5)
 {
-   this->nfet = new fet(NFET);
-   this->pfet = new fet(PFET);
+   this->n_fet = new nfet();
+   this->p_fet = new pfet();
 }
 
 void inverter::set_Vdd(float Vdd)
@@ -17,12 +17,12 @@ void inverter::set_Vdd(float Vdd)
 
 fet * inverter::get_nfet()
 {
-   return this->nfet;
+   return this->n_fet;
 }
 
 fet * inverter::get_pfet()
 {
-   return this->pfet;
+   return this->p_fet;
 }
 
 float inverter::get_tpHL()
@@ -42,15 +42,15 @@ float inverter::get_Vdd()
 
 float inverter::get_Cl()
 {
-   return nfet->get_Cox()*nfet->get_width()*nfet->get_length() + pfet->get_Cox()*pfet->get_width()*pfet->get_length();
+   return n_fet->get_Cox()*n_fet->get_width()*n_fet->get_length() + p_fet->get_Cox()*p_fet->get_width()*p_fet->get_length();
 }
 
 float inverter::get_Rn()
 {
-   return 1/(float(nfet->get_e_mobility()*nfet->get_Cox()*(nfet->get_width()/nfet->get_length()))*float(Vdd - nfet->get_Vth()));
+   return 1/(float(n_fet->get_e_mobility()*n_fet->get_Cox()*(n_fet->get_width()/n_fet->get_length()))*float(Vdd - n_fet->get_Vth()));
 }
 
 float inverter::get_Rp()
 {
-   return 1/(float(pfet->get_e_mobility()*pfet->get_Cox()*(pfet->get_width()/pfet->get_length()))*float(Vdd - abs(pfet->get_Vth())));
+   return 1/(float(p_fet->get_e_mobility()*p_fet->get_Cox()*(p_fet->get_width()/p_fet->get_length()))*float(Vdd - abs(p_fet->get_Vth())));
 }

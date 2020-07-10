@@ -10,7 +10,7 @@ using namespace std;
 int main()
 {
    cout << "NFET Analysis HW3" << endl;
-   fet nf1 = fet();
+   nfet nf1 = nfet();
    cout << "threshold voltage: " << nf1.get_Vth() << "V" << endl;
    nf1.set_gate_voltage(2.0);
    nf1.set_drain_voltage(0.1);

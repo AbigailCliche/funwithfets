@@ -9,17 +9,12 @@ using namespace std;
 
 // ************************************ Functions Visible to the User
 
-fet::fet():type(NFET),width(110*pow(10,-9)),length(22*pow(10,-9)),Na(1.45*pow(10,17)),tox(2*pow(10,-9)),MuN(1000)
+fet::fet():width(110*pow(10,-9)),length(22*pow(10,-9)),Na(1.45*pow(10,17)),tox(2*pow(10,-9)),MuN(1000)
 {
 }
 
-fet::fet(int type):type(type),width(110*pow(10,-9)),length(22*pow(10,-9)),Na(1.45*pow(10,17)),tox(2*pow(10,-9)),MuN(1000)
+fet::fet(float width=110*pow(10,-9), float length=22*pow(10,-9), float Na=1.45*pow(10,17), float tox=2*pow(10,-9), float MuN=1000)
 {
-}
-
-fet::fet(int type=NFET, float width=110*pow(10,-9), float length=22*pow(10,-9), float Na=1.45*pow(10,17), float tox=2*pow(10,-9), float MuN=1000)
-{
-   this->type = type;
    this->width = width;
    this->length = length;
    this->Na = Na;
@@ -105,6 +100,11 @@ float fet::get_e_mobility()
    return this->MuN;
 }
 
+float fet::get_Vgs()
+{
+   return this->Vgs;
+}
+
 float fet::get_drainage_current()
 {
    switch(this->get_operating_region())
@@ -138,18 +138,39 @@ float fet::get_Cox()
    return Eox/(this->tox*100);
 }
 
+float fet::get_Vds()
+{
+   return this->Vds;
+}
+
 float fet::get_Vth()
 {
    return (2*this->get_psi_beta())+(sqrt(4*Esi*q*this->Na*(this->get_psi_beta()))/this->get_Cox());
 }
 
-int fet::get_operating_region()
+int pfet::get_operating_region()
 {
-   if (this->Vgs < this->get_Vth())
+   if (this->get_Vgs() <= abs(this->get_Vth()))
    {
       return SUBTHRESHOLD;
    } 
-   else if (this->Vds < (this->Vgs - this->get_Vth()))
+   else if (this->get_Vds() <= (this->get_Vgs() - abs(this->get_Vth())))
+   {
+      return LINEAR;
+   } 
+   else
+   {
+      return SATURATION;
+   }
+}
+
+int nfet::get_operating_region()
+{
+   if (this->get_Vgs() <= this->get_Vth())
+   {
+      return SUBTHRESHOLD;
+   } 
+   else if (this->get_Vds() <= (this->get_Vgs() - this->get_Vth()))
    {
       return LINEAR;
    } 

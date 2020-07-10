@@ -16,8 +16,8 @@ class inverter
       float get_tpHL();
       float get_Vdd();
     private:
-      fet * nfet;
-      fet * pfet;
+      nfet * n_fet;
+      pfet * p_fet;
       float Vdd;
       float get_Rn();
       float get_Rp();

@@ -8,23 +8,11 @@
 #define PFET 0
 #define NFET 1
 
-// TODO 
-// consider differences between PMOS and NMOS in slide deck 7
-// Finish HW 3 problem 3
-
-// Pfet Vth < 0
-// Nfet Vth > 0
-
-/*
-* Update ox cap, update psi_beta -> update Vth -> update op region -> update Ids
-*/
-
 class fet
 {
    public:
       fet();
-      fet(int type);
-      fet(int type, float width, float length, float Na, float tox, float MuN);
+      fet(float width, float length, float Na, float tox, float MuN);
 
       float get_drainage_current();
       float get_width();
@@ -33,8 +21,11 @@ class fet
       float get_cox();
       float get_Vth(); // Threshold voltag: the minimum gate voltage required to induce current
       float get_Cox(); // oxide capacitance
+      float get_Vgs();
+      float get_Vds();
       float get_psi_beta();
       void print_operating_region();
+      // TODO get_depletion() (Lecture 8)
 
       void set_channel_doping(float Na);
       void set_tox_nm(float tox);
@@ -45,17 +36,29 @@ class fet
       void set_mobility(float MuN);
 
    private:
-      int get_operating_region();
+      virtual int get_operating_region() = 0;
 
       float Na;  // channel doping
       float tox; // in meters
       float width;
       float length;
       float MuN; // mobility of electrons
-      int type; // PMOS or NMOS
       float Vgs;
       float Vds;
 
+};
+
+class pfet: public fet
+{
+   public:
+      int get_operating_region();
+
+};
+
+class nfet: public fet
+{
+   public:
+      int get_operating_region();
 };
 
 #endif
